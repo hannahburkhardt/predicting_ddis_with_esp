@@ -1,8 +1,10 @@
 # Predicting DDIs with ESP
 
-#### Author: Hannah Burkhardt (haalbu@uw.edu)
+#### Repository author: Hannah Burkhardt (haalbu@uw.edu)
 
-This repository contains the code used in our paper "Predicting Adverse Drug-Drug Interactions with Neural Embedding of Semantic Predications".
+This repository contains the code used in our paper:
+
+Burkhardt, Hannah A, Devika Subramanian, Justin Mower, and Trevor Cohen. 2019. “Predicting Adverse Drug-Drug Interactions with Neural Embedding of Semantic Predications.” To Appear in Proc AMIA Annu Symp 2019.
 
 The corresponding data can be found on zenodo at [TBD]
 
