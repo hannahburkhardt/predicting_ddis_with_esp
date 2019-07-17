@@ -25,6 +25,3 @@ Finally, run the Jupyter notebook:
 conda activate decagon_jupyter
 jupyter notebook .
 ```
-
-
-
