@@ -1,12 +1,14 @@
 # Predicting DDIs with ESP
 
-#### Author: Hannah Burkhardt (haalbu@uw.edu)
+#### Repository author: Hannah Burkhardt (haalbu@uw.edu)
 
-This repository contains the code used in our paper "Predicting Adverse Drug-Drug Interactions with Neural Embedding of Semantic Predications".
+This repository contains the code used in our paper:
+
+Burkhardt, Hannah A, Devika Subramanian, Justin Mower, and Trevor Cohen. 2019. “Predicting Adverse Drug-Drug Interactions with Neural Embedding of Semantic Predications.” To Appear in Proc AMIA Annu Symp 2019.
 
 The corresponding data can be found on zenodo at [TBD]
 
-Please also see the companion repository, (Fork of Decagon)[https://github.com/hannahburkhardt/decagon], which contains the code necessary to run out implementation of the (Decagon algorithm)(https://doi.org/10.1093/bioinformatics/bty294).
+Please also see the companion repository at https://github.com/hannahburkhardt/decagon, which contains the code necessary to run out implementation of the [Decagon algorithm](https://doi.org/10.1093/bioinformatics/bty294).
 
 ## Usage
 
