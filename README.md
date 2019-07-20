@@ -19,7 +19,7 @@ cd predicting_ddis_with_esp
 
 After cloning the repository, create a new conda environment with the given configuration like so:
 ```bash
-conda create -n predicting_ddis_with_esp_env --file jupyter_env_spec_file.txt python=3.6.8
+conda create -n predicting_ddis_with_esp_env --file jupyter_env_spec_file_osx.txt python=3.6.8
 ```
 
 Finally, run the Jupyter notebook:
