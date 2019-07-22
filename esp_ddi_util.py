@@ -19,7 +19,8 @@ def get_auroc(group: pd.DataFrame) -> pd.Series:
 
 def get_aurocs_by_side_effect(positive_examples: pd.DataFrame, negative_examples: pd.DataFrame,
                               positive_results: pd.DataFrame, negative_results: pd.DataFrame, pr_curve: bool = False,
-                              plot: bool = True, single_side_effect: str = None, verbose=True, round_to_digits=3) -> pd.DataFrame:
+                              plot: bool = True, single_side_effect: str = None, verbose=True,
+                              round_to_digits=3) -> pd.DataFrame:
     """
     :param positive_examples: pd.DataFrame with positive testing samples
     :param negative_examples: pd.DataFrame with negative testing samples
@@ -29,6 +30,7 @@ def get_aurocs_by_side_effect(positive_examples: pd.DataFrame, negative_examples
     :param plot: if true, plot the receiver operating characteristic
     :param single_side_effect: if true, report details for this particular side effect
     :param verbose: print results, including mean/median and confidence intervals, rather than just returning the result dataframe.
+    :param round_to_digits: round the output to this number of digits (default 3)
     :return: pd.DataFrame with aurocs for each side effect, as well as the number of positive and negative samples for each side effect (for sanity check)
     """
     if verbose:
@@ -62,10 +64,12 @@ def get_aurocs_by_side_effect(positive_examples: pd.DataFrame, negative_examples
         metrics = metrics.append(pd.Series(
             {"auroc": aurocs_by_side_effect.auroc.mean(), "auprc": aurocs_by_side_effect.auprc.mean(),
              "ap50": aurocs_by_side_effect.ap50.mean()}, name="mean"))
-        metrics = metrics.append(pd.Series({"auroc": aurocs_by_side_effect.auroc.std(), "auprc": aurocs_by_side_effect.auprc.std(),
-                                "ap50": aurocs_by_side_effect.ap50.std()}, name="std"))
-        metrics = metrics.append(pd.Series({"auroc": aurocs_by_side_effect.auroc.sem(), "auprc": aurocs_by_side_effect.auprc.sem(),
-                                "ap50": aurocs_by_side_effect.ap50.sem()}, name="sem"))
+        metrics = metrics.append(
+            pd.Series({"auroc": aurocs_by_side_effect.auroc.std(), "auprc": aurocs_by_side_effect.auprc.std(),
+                       "ap50": aurocs_by_side_effect.ap50.std()}, name="std"))
+        metrics = metrics.append(
+            pd.Series({"auroc": aurocs_by_side_effect.auroc.sem(), "auprc": aurocs_by_side_effect.auprc.sem(),
+                       "ap50": aurocs_by_side_effect.ap50.sem()}, name="sem"))
         metrics = metrics.append(pd.Series(
             {"auroc": aurocs_by_side_effect.auroc.min(), "auprc": aurocs_by_side_effect.auprc.min(),
              "ap50": aurocs_by_side_effect.ap50.min()}, name="min"))
@@ -443,4 +447,3 @@ if __name__ == "__main__":
     file_location = "/envme/decagon/esp_decagon_deliverables/esp_16k_32cycles_new_negatives/"
     aurocs_by_se = get_aurocs_by_side_effect_files(file_location=file_location)
     print(aurocs_by_se)
-
