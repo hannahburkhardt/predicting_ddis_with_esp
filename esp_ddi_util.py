@@ -19,9 +19,8 @@ def get_auroc(group: pd.DataFrame) -> pd.Series:
 
 def get_aurocs_by_side_effect(positive_examples: pd.DataFrame, negative_examples: pd.DataFrame,
                               positive_results: pd.DataFrame, negative_results: pd.DataFrame, pr_curve: bool = False,
-                              plot: bool = True, single_side_effect: str = None, verbose=True) -> pd.DataFrame:
+                              plot: bool = True, single_side_effect: str = None, verbose=True, round_to_digits=3) -> pd.DataFrame:
     """
-
     :param positive_examples: pd.DataFrame with positive testing samples
     :param negative_examples: pd.DataFrame with negative testing samples
     :param positive_results: pd.DataFrame with positive predictions
@@ -36,8 +35,8 @@ def get_aurocs_by_side_effect(positive_examples: pd.DataFrame, negative_examples
         if single_side_effect is not None:
             print("Reporting on", single_side_effect, "only.")
 
-        print("Positive results mean score:", positive_results[0].mean())
-        print("Negative results mean score:", negative_results[0].mean())
+        print("Positive results mean score:", round(positive_results[0].mean(), round_to_digits))
+        print("Negative results mean score:", round(negative_results[0].mean(), round_to_digits))
 
     negative_examples, positive_examples = update_examples_for_single_side_effect(negative_examples, positive_examples,
                                                                                   single_side_effect)
@@ -48,33 +47,35 @@ def get_aurocs_by_side_effect(positive_examples: pd.DataFrame, negative_examples
     ap50, fpr, pr_auc, roc_auc, tpr = calculate_metrics(all_examples)
 
     if verbose:
-        print("AUROC:", roc_auc)
-        print("AUPRC:", pr_auc)
-        print("AP50:", ap50)
+        print("Overall AUROC:", round(roc_auc, round_to_digits))
+        print("Overall AUPRC:", round(pr_auc, round_to_digits))
+        print("Overall AP50:", round(ap50, round_to_digits))
 
     # calculate aurocs per side effect.
     aurocs_by_side_effect = all_examples.groupby(by='predicate_name').apply(get_auroc)
 
     if verbose:
-        m = pd.DataFrame(columns=["auroc", "auprc", "ap50"])
-        m = m.append(pd.Series(
+        metrics = pd.DataFrame(columns=["auroc", "auprc", "ap50"])
+        metrics = metrics.append(pd.Series(
             {"auroc": aurocs_by_side_effect.auroc.median(), "auprc": aurocs_by_side_effect.auprc.median(),
              "ap50": aurocs_by_side_effect.ap50.median()}, name="median"))
-        m = m.append(pd.Series(
+        metrics = metrics.append(pd.Series(
             {"auroc": aurocs_by_side_effect.auroc.mean(), "auprc": aurocs_by_side_effect.auprc.mean(),
              "ap50": aurocs_by_side_effect.ap50.mean()}, name="mean"))
-        m = m.append(pd.Series({"auroc": aurocs_by_side_effect.auroc.std(), "auprc": aurocs_by_side_effect.auprc.std(),
+        metrics = metrics.append(pd.Series({"auroc": aurocs_by_side_effect.auroc.std(), "auprc": aurocs_by_side_effect.auprc.std(),
                                 "ap50": aurocs_by_side_effect.ap50.std()}, name="std"))
-        m = m.append(pd.Series({"auroc": aurocs_by_side_effect.auroc.sem(), "auprc": aurocs_by_side_effect.auprc.sem(),
+        metrics = metrics.append(pd.Series({"auroc": aurocs_by_side_effect.auroc.sem(), "auprc": aurocs_by_side_effect.auprc.sem(),
                                 "ap50": aurocs_by_side_effect.ap50.sem()}, name="sem"))
-        m = m.append(pd.Series(
+        metrics = metrics.append(pd.Series(
             {"auroc": aurocs_by_side_effect.auroc.min(), "auprc": aurocs_by_side_effect.auprc.min(),
              "ap50": aurocs_by_side_effect.ap50.min()}, name="min"))
-        m = m.append(pd.Series(
+        metrics = metrics.append(pd.Series(
             {"auroc": aurocs_by_side_effect.auroc.max(), "auprc": aurocs_by_side_effect.auprc.max(),
              "ap50": aurocs_by_side_effect.ap50.max()}, name="max"))
-        m = m.transpose()
-        print(m)
+        metrics = metrics.transpose()
+        print()
+        print("Average performance over {} side effects:".format(len(aurocs_by_side_effect)))
+        print(metrics.round(round_to_digits))
 
     if plot:
         import matplotlib.pyplot as plt
@@ -87,7 +88,7 @@ def get_aurocs_by_side_effect(positive_examples: pd.DataFrame, negative_examples
         plt.ylabel('True Positive Rate')
         plt.title('Receiver operating characteristic')
         plt.legend(loc="lower right")
-    # plt.show()
+        # plt.show()
 
     if pr_curve:
         # plot PR curve
