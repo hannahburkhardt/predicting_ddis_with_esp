@@ -1,4 +1,5 @@
 import os
+from typing import Union
 
 import pandas as pd
 from sklearn.metrics import roc_curve, auc, average_precision_score, precision_recall_curve
@@ -17,8 +18,9 @@ def get_auroc(group: pd.DataFrame) -> pd.Series:
     return pd.Series({"auroc": roc_auc, "auprc": pr_auc, "ap50": ap50})
 
 
-def get_aurocs_by_side_effect(positive_examples: pd.DataFrame, negative_examples: pd.DataFrame,
-                              positive_results: pd.DataFrame, negative_results: pd.DataFrame, pr_curve: bool = False,
+def get_aurocs_by_side_effect(positive_examples: pd.DataFrame, negative_examples: Union[pd.DataFrame, list],
+                              positive_results: Union[pd.DataFrame, list], negative_results: pd.DataFrame,
+                              pr_curve: bool = False,
                               plot: bool = True, single_side_effect: str = None, verbose=True,
                               round_to_digits=3) -> pd.DataFrame:
     """
@@ -33,6 +35,20 @@ def get_aurocs_by_side_effect(positive_examples: pd.DataFrame, negative_examples
     :param round_to_digits: round the output to this number of digits (default 3)
     :return: pd.DataFrame with aurocs for each side effect, as well as the number of positive and negative samples for each side effect (for sanity check)
     """
+    # ensure correct format and columns names
+    if type(negative_results) is not pd.DataFrame:
+        negative_results = pd.DataFrame(negative_results)
+    if type(positive_results) is not pd.DataFrame:
+        positive_results = pd.DataFrame(positive_results)
+
+    negative_results.columns = [0]
+    positive_results.columns = [0]
+
+    if 'predicate_name' not in positive_examples.columns and 'predicate' in positive_examples.columns:
+        rename_dict = {'predicate': 'predicate_name', 'subject': 'subject_name', 'object': 'object_name'}
+        positive_examples.rename(columns=rename_dict, inplace=True)
+        negative_examples.rename(columns=rename_dict, inplace=True)
+
     if verbose:
         if single_side_effect is not None:
             print("Reporting on", single_side_effect, "only.")
