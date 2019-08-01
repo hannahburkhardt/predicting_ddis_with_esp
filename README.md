@@ -8,7 +8,7 @@ Burkhardt, Hannah A, Devika Subramanian, Justin Mower, and Trevor Cohen. 2019. â
 
 The corresponding data can be found on zenodo at [TBD]
 
-Please also see the companion repository at https://github.com/hannahburkhardt/decagon, which contains the code necessary to run out implementation of the [Decagon algorithm](https://doi.org/10.1093/bioinformatics/bty294).
+Please also see the companion repository at https://github.com/hannahburkhardt/decagon, which contains the code necessary to run our implementation of the [Decagon algorithm](https://doi.org/10.1093/bioinformatics/bty294).
 
 ## Usage
 
