@@ -26,7 +26,9 @@ cd predicting_ddis_with_esp
 
 Create a new conda environment with the given configuration, like so (depending on OS):
 ```bash
+# MacOS
 conda create -n predicting_ddis_with_esp_env --file jupyter_env_spec_file_osx.txt python=3.6.8
+# Linux
 conda create -n predicting_ddis_with_esp_env --file jupyter_env_spec_file_linux.txt python=3.6.8
 ```
 
