@@ -3,7 +3,7 @@
 # platform: osx-64
 @EXPLICIT
 https://repo.anaconda.com/pkgs/main/osx-64/blas-1.0-mkl.tar.bz2
-https://repo.anaconda.com/pkgs/main/osx-64/ca-certificates-2019.5.15-0.tar.bz2
+https://conda.anaconda.org/conda-forge/osx-64/ca-certificates-2019.6.16-hecc5488_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/intel-openmp-2019.4-233.tar.bz2
 https://conda.anaconda.org/conda-forge/osx-64/jpeg-9c-h1de35cc_1001.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/libcxxabi-4.0.1-hcfea43d_1.tar.bz2
@@ -17,7 +17,7 @@ https://repo.anaconda.com/pkgs/main/osx-64/libcxx-4.0.1-hcfea43d_1.tar.bz2
 https://conda.anaconda.org/conda-forge/osx-64/libpng-1.6.37-h2573ce8_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/mkl-2018.0.3-1.tar.bz2
 https://conda.anaconda.org/conda-forge/osx-64/openblas-0.2.20-8.tar.bz2
-https://repo.anaconda.com/pkgs/main/osx-64/openssl-1.1.1c-h1de35cc_1.tar.bz2
+https://conda.anaconda.org/conda-forge/osx-64/openssl-1.1.1c-h01d97ff_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/tk-8.6.8-ha441bb4_0.tar.bz2
 https://conda.anaconda.org/conda-forge/osx-64/expat-2.2.5-h6de7cb9_1003.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/freetype-2.9.1-hb4e5f40_0.tar.bz2
@@ -37,7 +37,8 @@ https://conda.anaconda.org/conda-forge/osx-64/qt-5.9.7-h93ee506_2.tar.bz2
 https://conda.anaconda.org/conda-forge/osx-64/appnope-0.1.0-py36_1000.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/attrs-19.1.0-py_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/backcall-0.1.0-py_0.tar.bz2
-https://repo.anaconda.com/pkgs/main/osx-64/certifi-2019.6.16-py36_0.tar.bz2
+https://conda.anaconda.org/conda-forge/osx-64/bitarray-1.0.1-py36h01d97ff_0.tar.bz2
+https://conda.anaconda.org/conda-forge/osx-64/certifi-2019.6.16-py36_1.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/decorator-4.4.0-py_0.tar.bz2
 https://conda.anaconda.org/conda-forge/noarch/defusedxml-0.5.0-py_1.tar.bz2
 https://conda.anaconda.org/conda-forge/osx-64/entrypoints-0.3-py36_1000.tar.bz2
@@ -100,6 +101,7 @@ https://repo.anaconda.com/pkgs/main/osx-64/numpy-1.15.4-py36h6a91979_0.tar.bz2
 https://conda.anaconda.org/conda-forge/osx-64/numba-0.45.0-py36h86efe34_0.tar.bz2
 https://conda.anaconda.org/conda-forge/osx-64/pandas-0.24.2-py36h86efe34_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/scipy-1.1.0-py36h28f7352_1.tar.bz2
+https://conda.anaconda.org/conda-forge/noarch/semvecpy-0.1.3-pyh5ca1d4c_0.tar.bz2
 https://conda.anaconda.org/conda-forge/osx-64/altair-3.1.0-py36_0.tar.bz2
 https://repo.anaconda.com/pkgs/main/osx-64/scikit-learn-0.19.1-py36hf9f1f73_0.tar.bz2
 https://conda.anaconda.org/conda-forge/osx-64/vega-2.4.0-py36_0.tar.bz2
